@@ -1,0 +1,154 @@
+
+/*  
+
+    饿了么内部是拿到input表单，然后input.value=xxx的方式同步表单内容
+
+        type: {
+            type: String,
+            default: "text"
+        },
+        value: String,
+        placeholder: String,
+        disabled: Boolean,
+        id: String, 
+        maxlength: Number,
+        readonly: Boolean,
+        resize: Boolean
+*/ 
+// 测试默认值
+test('test input props default value', () => {
+
+    let inputWraper = mount(Input, {
+        propsData:{}
+    });
+
+    expect(inputWraper.props().type).toEqual("text");
+    expect(inputWraper.props().placeholder).toBeUndefined()
+    expect(inputWraper.props().diabled).toBeFalsy();
+    expect(inputWraper.props().maxlength).toBeUndefined();
+    expect(inputWraper.props().readonly).toBeFalsy();//为什么默认值是false? boolean类型，即使没有传值，也会指定为false
+    expect(inputWraper.props().resize).toBeFalsy();
+
+});
+
+// maxlength 无法测试，跳过
+test("test input props type text", async()=>{
+
+    // 文本类型
+    const TEST_TEXT = "测试文本";
+    let inputWraper = mount(Input, {
+        propsData:{
+            type: "text",
+            value: TEST_TEXT
+        }   
+    });
+    expect(inputWraper.props().value).toEqual(TEST_TEXT);
+
+    // // 测试maxlength
+    // // 长度足够
+    // let text4maxlength = "aaaa";
+    // const TEST_MAXLENGTH = 10;
+    // inputWraper = mount(Input, {
+    //     propsData:{
+    //         type:"text",
+    //         value: text4maxlength,
+    //         maxlength: TEST_MAXLENGTH
+    //     }
+    // });
+    // await Vue.nextTick();
+    // 怎么找到组件里面的dom元素，并读取实际的展示数据？inputWraper.find("input").element.value
+    // expect(inputWraper.find("input").element.value).toEqual(text4maxlength.slice(0, TEST_MAXLENGTH));
+
+    // // 长度超出
+    // text4maxlength = "aaaaaaaaaaaaaaaaaaaaaaaaaa";
+    // inputWraper = mount(Input, {
+    //     propsData:{
+    //         type:"text",
+    //         value: text4maxlength,
+    //         maxlength: TEST_MAXLENGTH
+    //     }
+    // });
+    // await Vue.nextTick();
+    // // Q：为什么maxlength不起作用？
+    // console.log(inputWraper.find("input").element);
+    // console.log(inputWraper.props());
+    // inputWraper.find("input").element.setAttribute("maxlength", text4maxlength);
+    // await Vue.nextTick();
+    // console.log("value",inputWraper.find("input").element.value);
+    // expect(inputWraper.find("input").element.value).toEqual(text4maxlength.slice(0, TEST_MAXLENGTH));
+    
+});
+
+
+
+
+
+    /***
+     *  type: {
+     *      text
+     *      number
+        },
+        value:{
+            
+            ''
+            'aaaaaaaaaa'
+        },
+        placeholder: {
+            ''
+            '请输入xxx'
+        },
+        disabled: {
+            true
+            false
+        },
+        id: String, 
+        maxlength: Number,
+        readonly: {
+            true
+            false
+        },
+        resize: {
+            true
+            false
+        }
+
+        change事件
+            怎么判断change事件有被触发到？
+     */
+
+
+test("test input props type number", async()=>{
+    let inputHandler = function(){
+        console.log(arguments);
+    };
+    let test_text = "1132323aaaaa";
+    let inputWraper = mount(Input, {
+        propsData:{
+            type:"number",
+            value: test_text,
+        },
+        listeners:{
+            input: inputHandler
+        }  
+    });
+    await Vue.nextTick();
+    let inputElem = inputWraper.findComponent({ref:"input"});
+    // inputElem.element.setAttribute("value", 1111);
+    // inputElem.trigger("input");
+    // await inputElem.setValue(test_text);
+    // console.log("inputElem.element.value", inputWraper.props());
+}); 
+
+
+// 测试change事件
+test("test input change has trigger", async()=>{
+    let changeFn = jest.fn((event)=>{});
+    let inputWraper = mount(Input, {
+        listeners:{
+            change: changeFn
+        }
+    });
+    let inputElem = inputWraper.findComponent({ref:"input"});
+    await inputElem.trigger("change");
+    expect(changeFn).toHaveBeenCalled();
+})
