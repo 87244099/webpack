@@ -1,5 +1,11 @@
+<style>
+.my-input{
+    display: inline-block;
+    width: fit-content;
+}
+</style>
 <template>
-    <div>
+    <div class="my-input">
         <template v-if="type==='number'">
             <input ref="input"
                 :type="type"
@@ -53,6 +59,9 @@
 </template> 
 <script>
 export default {
+
+    name: "my-input",
+
     model:{
         prop:"value",
         event: "input"

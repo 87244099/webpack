@@ -1,5 +1,2 @@
-import input from "./input.vue";
-
-export default {
-    input
-};
+import Input from "./input.vue";
+Vue.component("my-input", Input);

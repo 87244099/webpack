@@ -1,5 +1,5 @@
 - 开发阶段：
-    - 以vue作为开发框架
+    - 以vue作为开发框架 y
     - 基本的webpack结构
    
         ```shell
@@ -28,21 +28,21 @@
         └── yarn.lock
         ```
 
-    - 支持css、less、sass的样式开发
-    - 支持.vue单文件开发
-    - 自定义组件开发
+    - 支持css y
+    - 支持.vue单文件开发 y
+    - 自定义组件开发 y
     - 单元测试：
-        - 以jest作为测试框架
+        - 以jest作为测试框架 y
         - 如果要整合到webpack里面，可以考虑使用jest-webpack
-        - 如果是单独使用，则可以使用jest自己配置
+        - 如果是单独使用，则可以使用jest自己配置 y
         - vue测试，类似vue-loader的解析，需要用vue官方的测试框架：vue单文件开发，有自己的测试框架：https://vue-test-utils.vuejs.org/installation/#using-vue-test-utils-with-jest-recommended
-
+        - 测试环节要整合到webpack里面
     - source-map
     - 预览：
-        - 页面模板内容
-        - 外部脚本、样式引入
+        - 页面模板内容 y
+        - 外部脚本、样式引入 y
         - 资源时间戳
-        - 服务器预览
+        - 服务器预览 y
         - 模块热替换
 
 - 生产阶段：
@@ -101,3 +101,5 @@
         - provide：实现provide/inject特性
 
 
+- 常见问题
+    - Q：怎么分开预览和构建的过程？
