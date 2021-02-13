@@ -1,6 +1,6 @@
 - 开发阶段：
     - 以vue作为开发框架 y
-    - 基本的webpack结构
+    - 基本的webpack结构 y
    
         ```shell
         webpack
@@ -33,29 +33,36 @@
     - 自定义组件开发 y
     - 单元测试：
         - 以jest作为测试框架 y
-        - 如果要整合到webpack里面，可以考虑使用jest-webpack
+        - 如果要整合到webpack里面，可以考虑使用jest-webpack n
         - 如果是单独使用，则可以使用jest自己配置 y
         - vue测试，类似vue-loader的解析，需要用vue官方的测试框架：vue单文件开发，有自己的测试框架：https://vue-test-utils.vuejs.org/installation/#using-vue-test-utils-with-jest-recommended
-        - 测试环节要整合到webpack里面
+        - 测试环节要整合到webpack里面 y
     - source-map
     - 预览：
         - 页面模板内容 y
         - 外部脚本、样式引入 y
         - 资源时间戳
         - 服务器预览 y
-        - 模块热替换
+        - 模块热替换 y
 
 - 生产阶段：
     - 引入babel，兼容到IE9浏览器
-    - 压缩
-    - 混淆
-    - 公共代码抽取
-    - tree-shaking
+    - 压缩 y
+    - 混淆 y
+    - 公共代码抽取 y
+    - tree-shaking y
 
 - 发布阶段
     - 文档说明
     - npm发布
-    
+        - 注册npm账号
+        - npm init
+        - npm adduser 添加用户 如果没有则npm login
+        - npm publish 发布包
+        - npm view publish_demo version 设置版本号
+    - 常见错误码
+        - 403 检查设否被设置为国内镜像，如果时则修正为http://registry.npmjs.org/
+        - 402 发布的包可能因为名称冲突设置了作用域，需要修改为公开：npm publish --access=public
 
 - jest文档用法
     - wrapper

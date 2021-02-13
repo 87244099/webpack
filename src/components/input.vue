@@ -3,6 +3,9 @@
     display: inline-block;
     width: fit-content;
 }
+.my-input input{
+    color: red;
+}
 </style>
 <template>
     <div class="my-input">
@@ -92,6 +95,9 @@ export default {
         input(value){
             this.$emit('input', value)
         }
+    },
+    created(){
+        console.log(123);
     }
 };
 </script>
